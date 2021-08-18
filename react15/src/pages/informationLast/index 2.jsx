@@ -20,7 +20,7 @@ class InformationLast extends React.Component {
   }
   componentDidMount() {
     // 设置面包屑内容
-    main.appInfo.crumbsState.setCrumbs(['首页', '选车', '丰田', '凯美瑞', '资讯最终页'])
+    // main.appInfo.crumbsState.setCrumbs(['首页', '选车', '丰田', '凯美瑞', '资讯最终页'])
   }
 
   render() {

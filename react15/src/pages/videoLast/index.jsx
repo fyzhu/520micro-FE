@@ -20,7 +20,7 @@ class VideoLast extends React.Component {
   }
   componentDidMount() {
     // 设置面包屑内容
-    main.appInfo.crumbsState.setCrumbs(['首页', '选车', '丰田', '凯美瑞', '视频'])
+    // main.appInfo.crumbsState.setCrumbs(['首页', '选车', '丰田', '凯美瑞', '视频'])
   }
 
   render() {

@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import singleSpaVue from 'single-spa-vue';
 Vue.config.productionTip = false
 
 const render = () => {
@@ -11,19 +10,21 @@ const render = () => {
   }).$mount('#app-vue')
 }
 
-if (!window.singleSpaNavigate) {
+if (!window.__MICRO_WEB__) {
   render()
 }
 
-const vueLifecycles = singleSpaVue({
-  Vue,
-  appOptions: {
-    router,
-    render: h => h(App),
-    props: {},
-  }
-});
+export async function bootstrap() {
+  console.log('bootstrap');
+}
 
-export const bootstrap = vueLifecycles.bootstrap; // 启动时
-export const mount = vueLifecycles.mount; // 挂载时
-export const unmount = vueLifecycles.unmount; // 卸载时
+export async function mount() {
+  render()
+}
+
+export async function unmount(ctx) {
+  const { container } = ctx
+  if (container) {
+    document.querySelector(container).innerHTML = ''
+  }
+}

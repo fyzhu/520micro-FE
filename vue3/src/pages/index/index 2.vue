@@ -27,7 +27,7 @@ export default {
   },
   setup() {
     if (main.appInfo) {
-      main.appInfo.crumbsState.setCrumbs([])
+      // main.appInfo.crumbsState.setCrumbs([])
     }
   },
 };

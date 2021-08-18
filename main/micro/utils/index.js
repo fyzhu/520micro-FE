@@ -26,21 +26,32 @@ export const filterApp = (key, value) => {
 
 // 子应用是否做了切换
 export const isTurnChild = () => {
-  const { pathname } = window.location
+  const { pathname, hash } = window.location
+  const url = pathname + hash
 
-  let prefix = pathname.match(/(\/\w+)/)
-  if (prefix) {
-    prefix = prefix[0]
+  // 当前路由无改变。
+  const currentPrefix = url.match(/(\/\w+)/g)
+
+  if (
+    currentPrefix &&
+    (currentPrefix[0] === window.__CURRENT_SUB_APP__) &&
+    hash === window.__CURRENT_HASH__
+  ) {
+    return false;
   }
-  window.__ORIGIN_APP__ = window.__CURRENT_SUB_APP__
-  if (window.__CURRENT_SUB_APP__ === prefix) {
+
+  window.__ORIGIN_APP__ = window.__CURRENT_SUB_APP__;
+
+  const currentSubApp = window.location.pathname.match(/(\/\w+)/)
+
+  if (!currentSubApp) {
     return false
   }
-  const currentApp = window.location.pathname.match(/(\/\w+)/)
-  if (!currentApp) {
-    return
-  }
+  // 当前路由以改变，修改当前路由
+  window.__CURRENT_SUB_APP__ = currentSubApp[0];
 
-  window.__CURRENT_SUB_APP__ = currentApp[0]
-  return true
+  // 判断当前hash值是否改变
+  window.__CURRENT_HASH__ = hash
+
+  return true;
 }
