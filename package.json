@@ -4,7 +4,8 @@
   "description": "create micro project for myself",
   "main": "index.js",
   "scripts": {
-    "start": "node ./build/run.js"
+    "start": "node ./build/run.js",
+    "download": "node ./build/init.js"
   },
   "author": "yancy",
   "license": "ISC",
